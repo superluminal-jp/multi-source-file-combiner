@@ -1,21 +1,37 @@
-# File Combiner Script Documentation
+# Multi-Source File Combiner
+
+A flexible Python script that combines multiple files and folders into a single output file, supporting various programming languages and text formats.
 
 ## Overview
 
-`combine_files.py` is a Python script that combines multiple files of various types (including code, Markdown, and text files) from specified files and folders into a single output file. It offers flexibility in terms of input sources, file types to process, and allows for customization of ignored files and folders.
+The Multi-Source File Combiner is a powerful and flexible Python utility designed to streamline the process of combining multiple files and folders into a single, well-organized output file. This tool is particularly useful for developers, technical writers, and anyone working with multiple code or text files across various projects.
 
-## Features
+### Key Features:
 
-- Supports multiple input sources (files and folders)
-- Handles various file types including multiple programming languages, Markdown, and plain text
-- Recursive folder scanning
-- Customizable file and folder exclusions
-- Flexible file extension filtering
-- Appropriate file separation and headers in the combined output
+- Supports multiple input sources: Combine files from various locations and folders
+- Language-agnostic: Works with multiple programming languages and text formats
+- Customizable: Easily ignore specific files or folders and filter by file extensions
+- Intelligent output: Generates a neatly formatted output with clear file separators
+- User-friendly: Simple command-line interface with intuitive options
+
+Whether you're consolidating code for review, preparing documentation, or simply organizing your project files, the Multi-Source File Combiner offers an efficient and adaptable solution to meet your needs.
 
 ## Requirements
 
 - Python 3.x
+
+## Installation
+
+1. Clone this repository:
+   ```
+   git clone https://github.com/yourusername/multi-source-file-combiner.git
+   ```
+2. Navigate to the project directory:
+   ```
+   cd multi-source-file-combiner
+   ```
+
+No additional dependencies are required.
 
 ## Usage
 
@@ -41,7 +57,7 @@ python combine_files.py <source1> [source2 ...] <output_file> [options]
 - Ignored folders: `venv`, `__pycache__`, `node_modules`
 - Processed extensions: `.py`, `.js`, `.java`, `.c`, `.cpp`, `.rb`, `.pl`, `.php`, `.swift`, `.go`, `.rs`, `.ts`, `.md`, `.txt`
 
-## Examples
+### Examples
 
 1. Basic usage with multiple sources:
    ```
@@ -112,77 +128,23 @@ You can easily extend the script to support additional file types:
 
 ## Contributing
 
-Feel free to fork this script and adapt it to your needs. Contributions, bug reports, and feature requests are welcome.
+Contributions to the Multi-Source File Combiner are welcome! Here's how you can contribute:
 
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Make your changes
+4. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+5. Push to the branch (`git push origin feature/AmazingFeature`)
+6. Open a Pull Request
 
-# Prompt
+Please ensure your code adheres to the existing style to maintain consistency.
 
-```
-# Pythonコード整理プロンプト
+## License
 
-与えられたPythonコードを深く理解し、機能を損なうことなくベストプラクティスに従って整理するためのガイドラインです。
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 1. コード分析
+## Contact
 
-- コード全体の構造と目的を詳細に分析してください。
-- 各モジュール、クラス、関数の役割を特定し、相互の依存関係を理解してください。
-- 使用されているライブラリやフレームワークを確認し、それらの最新のベストプラクティスを考慮してください。
+Your Name - [@your_twitter](https://twitter.com/your_twitter) - email@example.com
 
-## 2. 問題点の特定
-
-- PEP 8スタイルガイドに違反している箇所を特定してください。
-- 非効率的な部分、重複コード、過度に複雑な実装がないか確認してください。
-- 潜在的なパフォーマンス問題やメモリリークがないか調査してください。
-
-## 3. リファクタリングと最適化
-
-以下のPythonベストプラクティスに基づいてコードを整理してください：
-
-a) PEP 8スタイルガイドに準拠するようにコードをフォーマットする。
-b) 適切な命名規則を使用し、変数名や関数名をより明確で説明的なものにする（例：スネークケースを使用）。
-c) リスト内包表記、ジェネレータ式、`map()`、`filter()`などのPythonic な構文を適切に使用する。
-d) 関数やクラスの責任を明確に分離し、単一責任の原則を適用する。
-e) タイプヒントを追加し、コードの可読性と保守性を向上させる。
-f) 適切なデータ構造（リスト、辞書、集合など）を使用してパフォーマンスを最適化する。
-g) コンテキストマネージャ（`with`文）を使用してリソース管理を改善する。
-h) 例外処理を適切に実装し、具体的な例外クラスを使用する。
-i) 繰り返し使用されるコードをヘルパー関数やユーティリティクラスに抽出する。
-j) 不要なグローバル変数を削除し、関数の引数として渡すようにする。
-
-## 4. ドキュメンテーションの改善
-
-- 各モジュール、クラス、関数にドックストリングを追加または更新する。
-- 複雑なロジックには適切なインラインコメントを追加する。
-- READMEファイルを作成または更新し、プロジェクトの概要、セットアップ手順、使用方法を記述する。
-
-## 5. テストの拡充
-
-- 単体テストを作成または更新し、リファクタリングによる機能の変更がないことを確認する。
-- `pytest`や`unittest`などのテストフレームワークを使用する。
-- エッジケースや境界値のテストケースを追加する。
-
-## 6. パフォーマンス最適化
-
-- プロファイリングツール（例：cProfile）を使用して、パフォーマンスのボトルネックを特定する。
-- 必要に応じて、計算量の少ないアルゴリズムや効率的なデータ構造に置き換える。
-- 大規模なデータセットを扱う場合は、ジェネレータや`itertools`モジュールの使用を検討する。
-
-## 7. モジュール構成の最適化
-
-- 関連する機能をモジュールやパッケージに適切に分割する。
-- 循環インポートを避け、明確な依存関係構造を作成する。
-- `__init__.py`ファイルを適切に使用し、パッケージのインターフェースを整理する。
-
-## 8. 変更点の文書化
-
-- リファクタリングの各ステップを説明し、変更の理由と期待される改善点を詳細に記述する。
-- 変更履歴を管理するために、バージョン管理システム（Git等）のコミットメッセージを適切に記述する。
-
-## 9. 最終チェック
-
-- リファクタリング後のコードが元の機能を完全に保持していることを確認する。
-- 全てのテストが通過することを確認する。
-- コードの可読性、保守性、拡張性が向上していることを確認する。
-
-このガイドラインに従うことで、Pythonコードを効果的に整理し、品質を向上させることができます。必要に応じて、特定のプロジェクトや要件に合わせてこのプロンプトをカスタマイズしてください。
-```
+Project Link: [https://github.com/yourusername/multi-source-file-combiner](https://github.com/yourusername/multi-source-file-combiner)
