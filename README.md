@@ -1,13 +1,14 @@
 # Multi-Source File Combiner
 
-A flexible Python script that combines multiple files and folders into a single output file, supporting various programming languages and text formats.
+A flexible utility that combines multiple files and folders into a single output file, supporting various file types and customizable filtering options. This project provides both Python and Bash implementations for maximum flexibility.
 
 ## Overview
 
-The Multi-Source File Combiner is a powerful and flexible Python utility designed to streamline the process of combining multiple files and folders into a single, well-organized output file. This tool is particularly useful for developers, technical writers, and anyone working with multiple code or text files across various projects.
+The Multi-Source File Combiner is a powerful and versatile tool designed to streamline the process of combining multiple files and folders into a single, well-organized output file. This utility is particularly useful for developers, technical writers, and anyone working with multiple files across various projects.
 
 ### Key Features:
 
+- Multiple implementations: Choose between Python and Bash versions
 - Supports multiple input sources: Combine files from various locations and folders
 - Language-agnostic: Works with multiple programming languages and text formats
 - Customizable: Easily ignore specific files or folders and filter by file extensions
@@ -18,7 +19,8 @@ Whether you're consolidating code for review, preparing documentation, or simply
 
 ## Requirements
 
-- Python 3.x
+- For Python version: Python 3.x
+- For Bash version: Bash shell (available on most Unix-like operating systems, including Linux and macOS)
 
 ## Installation
 
@@ -30,74 +32,69 @@ Whether you're consolidating code for review, preparing documentation, or simply
    ```
    cd multi-source-file-combiner
    ```
+3. For the Bash version, make the script executable:
+   ```
+   chmod +x combine_files.sh
+   ```
 
 No additional dependencies are required.
 
 ## Usage
 
-### Basic Command
+### Python Version
+
+#### Basic Command
 
 ```
 python combine_files.py <source1> [source2 ...] <output_file> [options]
 ```
 
-### Command-line Arguments
-
-- `<source1> [source2 ...]`: Paths to files and/or folders to be combined (at least one required)
-- `<output_file>`: Name of the output file where combined content will be saved (required)
-
-### Options
+#### Options
 
 - `--ignore-files [FILES ...]`: List of files to ignore
 - `--ignore-folders [FOLDERS ...]`: List of folders to ignore
 - `--extensions [EXTENSIONS ...]`: List of file extensions to process
 
-### Default Values
+#### Example
 
-- Ignored folders: `venv`, `__pycache__`, `node_modules`
-- Processed extensions: `.py`, `.js`, `.java`, `.c`, `.cpp`, `.rb`, `.pl`, `.php`, `.swift`, `.go`, `.rs`, `.ts`, `.md`, `.txt`
+```
+python combine_files.py /path/to/src /path/to/docs /path/to/main.py combined_output.txt --ignore-files README.md --ignore-folders tests --extensions .py .js .md .txt
+```
 
-### Examples
+### Bash Version
 
-1. Basic usage with multiple sources:
-   ```
-   python combine_files.py /path/to/folder1 /path/to/file1.py /path/to/folder2 combined_output.txt
-   ```
+#### Basic Command
 
-2. Specify files and folders to ignore:
-   ```
-   python combine_files.py /path/to/project combined_output.txt --ignore-files README.md temp.txt --ignore-folders docs temp
-   ```
+```
+./combine_files.sh [-o output_file] [-i ignore_pattern] [-e file_extensions] source1 [source2 ...]
+```
 
-3. Process only specific file types:
-   ```
-   python combine_files.py /path/to/src /path/to/docs combined_output.txt --extensions .py .js .md
-   ```
+#### Options
 
-4. Combine all options:
-   ```
-   python combine_files.py /path/to/src /path/to/docs /path/to/main.py combined_output.txt --ignore-files README.md --ignore-folders tests --extensions .py .js .md .txt
-   ```
+- `-o output_file`: Specify the output file (default: combined_output.txt)
+- `-i ignore_pattern`: Specify files/folders to ignore (glob pattern, can be used multiple times)
+- `-e file_extensions`: Specify file extensions to include (comma-separated, default: all)
+
+#### Example
+
+```
+./combine_files.sh -o combined.txt -i "*.log" -i "temp*" -e py,js,md /path/to/src /path/to/docs /path/to/main.py
+```
 
 ## Output Format
 
-The script combines files with clear separation:
-
-- For code files, it uses language-specific comment characters to create headers.
-- For Markdown and text files, it uses ASCII art separators.
-
-Example output structure:
+Both versions of the script combine files with clear separation:
 
 ```
-// ============================================================================
-// File: src/main.js
-// ============================================================================
+================================================================================
+File: src/main.js
+================================================================================
 
 [Content of main.js]
 
-# ============================================================================
-# File: src/utils.py
-# ============================================================================
+================================================================================
+File: src/utils.py
+================================================================================
 
 [Content of utils.py]
 
@@ -110,21 +107,31 @@ File: docs/README.md
 
 ## Customization
 
-You can easily extend the script to support additional file types:
+### Python Version
+
+You can easily extend the Python script to support additional file types:
 
 1. Add new file extensions to the `comment_styles` dictionary in the `get_language_comment` function.
 2. If necessary, modify the `write_file_header` function to handle any special cases for new file types.
 
+### Bash Version
+
+The Bash version uses a simpler header format for all file types. To customize:
+
+1. Modify the `write_file_header` function in the script to change the header format.
+2. Adjust the file extension filtering in the main processing loop if needed.
+
 ## Limitations
 
-- The script assumes UTF-8 encoding for all files. Files with different encodings may not be processed correctly.
+- Both scripts assume UTF-8 encoding for all files. Files with different encodings may not be processed correctly.
 - Very large files or a large number of files may impact performance.
+- The Bash version may have limited functionality on non-Unix-like systems.
 
 ## Troubleshooting
 
 - If you encounter "Permission denied" errors, ensure you have read access to all files and folders.
 - For "File not found" errors, check that the specified file or folder paths are correct.
-- If a specified source doesn't exist or is inaccessible, the script will display a warning and skip that source.
+- If a specified source doesn't exist or is inaccessible, both scripts will display a warning and skip that source.
 
 ## Contributing
 
