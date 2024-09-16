@@ -74,11 +74,9 @@ process_directory() {
     local dir="$1"
     local base_path="$2"
     
-    while IFS= read -r -d '' file; do
-        if [ -f "$file" ]; then
-            process_file "$file" "$base_path"
-        fi
-    done < <(find "$dir" -type f -print0)
+    find "$dir" -type f | while IFS= read -r file; do
+        process_file "$file" "$base_path"
+    done
 }
 
 # Main processing loop
